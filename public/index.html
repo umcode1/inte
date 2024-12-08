@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triarch Port AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+      <div id="volumeToggle">
+        <button id="muteButton">🔊</button>
+      </div>
+  
+      <!-- <div id="skipContainer">
+        <button id="skipButton">Skip</button>
+      </div> -->
+
+      <div id="controlButtons">
+        <button id="skipButton">Skip</button>
+        <button id="replayButton">↺ </button>
+      </div>
+
+    <video id="videoPlayer" autoplay>
+      <source src="1.mp4" type="video/mp4">
+      No support for video playback
+    </video>
+
+    <div id="choiceOverlay">
+      <button id="choice1" class="choiceButton">Arion</button>
+      <button id="choice2" class="choiceButton">Lumo</button>
+      <button id="choice3" class="choiceButton">Kodeon</button>
+      
+    </div>
+
+    <div id="searchContainer" style="display: none;">
+      <input type="text" id="searchInput" placeholder="Generate ..">
+      <button id="searchButton">Search</button>
+      <div id="responseArea"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
