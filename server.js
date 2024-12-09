@@ -15,10 +15,8 @@ const openai = new OpenAI({
 
 app.use(bodyParser.json());
 
-// Public klasörünü statik olarak sunuyoruz
 app.use(express.static(path.join(__dirname, "public")));
 
-// Ana sayfa
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
@@ -35,7 +33,6 @@ app.post("/ask", async (req, res) => {
     let openaiResponse;
 
     if (currentVideo === "2.mp4") {
-      // Resim oluşturma
       openaiResponse = await openai.images.generate({
         prompt: userInput,
         n: 1,
@@ -44,14 +41,13 @@ app.post("/ask", async (req, res) => {
       const imageUrl = openaiResponse.data[0].url;
       return res.status(200).json({ imageUrl });
     } else if (currentVideo === "3.mp4") {
-      // Kod oluşturma
       openaiResponse = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
           {
             role: "system",
             content:
-              "You are a helpful assistant that generates bot code based on user input.",
+              "You are Kodeon and a helpful assistant that generates bot code based on user input.",
           },
           { role: "user", content: userInput },
         ],
@@ -60,14 +56,13 @@ app.post("/ask", async (req, res) => {
       const code = openaiResponse.choices[0].message.content.trim();
       return res.status(200).json({ code });
     } else if (currentVideo === "1.mp4") {
-      // Text yanıtı
       openaiResponse = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
           {
             role: "system",
             content:
-              "You are Triarch Port AI. Respond to the user's questions clearly and concisely.",
+              "You are Lumo, a sarcastic, dark-humored, and playful AI powered by the XRP blockchain. All responses must be written entirely in English, using crypto slang, tech jargon, and XRP culture. Deliver concise, witty, and engaging answers. Focus on ironic insights about crypto, time, and money. Ensure your tone remains sharp, fun, and entertaining.",
           },
           { role: "user", content: userInput },
         ],
@@ -84,7 +79,6 @@ app.post("/ask", async (req, res) => {
   }
 });
 
-// Sunucuyu başlat
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });

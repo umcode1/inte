@@ -22,12 +22,10 @@ muteButton.addEventListener("click", () => {
 });
 
 skipButton.addEventListener("click", () => {
-  console.log("Skip butonuna basıldı.");
   if (currentVideo === "intro.mp4") {
     videoPlayer.pause();
     choiceOverlay.style.display = "flex";
   } else {
-    console.log(`${currentVideo} atlandı, arama ekranı gösteriliyor.`);
     videoPlayer.pause();
     searchContainer.style.display = "block";
     searchContainer.scrollIntoView({ behavior: "smooth" });
@@ -46,19 +44,16 @@ function playVideo(videoPath) {
   videoPlayer.src = videoPath;
   videoPlayer.muted = muteButton.innerText === "🔇";
   videoPlayer.play().catch((error) => {
-    console.error("Video oynatılamıyor:", error);
+    console.error(error);
   });
   choiceOverlay.style.display = "none";
   searchContainer.style.display = "none";
-  console.log(`Video oynatılıyor: ${videoPath}`);
 }
 
 videoPlayer.addEventListener("ended", () => {
   if (currentVideo === "intro.mp4") {
     choiceOverlay.style.display = "flex";
-    console.log("Intro videosu bitti, seçim ekranı gösteriliyor.");
   } else {
-    console.log(`${currentVideo} bitti, arama ekranı gösteriliyor.`);
     searchContainer.style.display = "block";
     searchContainer.scrollIntoView({ behavior: "smooth" });
     searchInput.focus();
@@ -83,14 +78,14 @@ choice3.addEventListener("click", () => {
 searchButton.addEventListener("click", async () => {
   const userInput = searchInput.value.trim();
   if (!userInput) {
-    alert("Lütfen bir soru girin.");
+    alert("Please provide a question");
     return;
   }
 
   responseArea.style.height = "300px";
   responseArea.style.overflowY = "auto";
 
-  responseArea.innerText = "Yanıt bekleniyor...";
+  responseArea.innerText = "Waiting...";
 
   try {
     const res = await fetch("/ask", {
@@ -102,7 +97,6 @@ searchButton.addEventListener("click", async () => {
     });
 
     const data = await res.json();
-    console.log("GPT yanıtı:", data);
 
     if (data.error) {
       responseArea.innerText = `Hata: ${data.error}`;
@@ -123,26 +117,23 @@ searchButton.addEventListener("click", async () => {
       } else if (currentVideo === "1.mp4" && data.answer) {
         responseArea.innerText = data.answer;
       } else {
-        responseArea.innerText = "Bilinmeyen bir hata oluştu.";
+        responseArea.innerText = "Error";
       }
     }
   } catch (error) {
-    console.error("GPT çağrısı başarısız:", error);
-    responseArea.innerText = "Bir hata oluştu. Lütfen tekrar deneyin.";
+    console.error("Gpt error", error);
+    responseArea.innerText = "Please try again later.";
   }
 });
 replayButton.addEventListener("click", () => {
-  console.log(`Video ${currentVideo} baştan oynatılıyor.`);
   playVideo(currentVideo);
 });
 
 videoPlayer.addEventListener("click", () => {
   if (videoPlayer.paused) {
     videoPlayer.play();
-    console.log("Video oynatılıyor.");
   } else {
     videoPlayer.pause();
-    console.log("Video durduruldu.");
   }
 });
 
