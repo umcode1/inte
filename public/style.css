@@ -218,4 +218,44 @@ body {
     background-color: #00ff00;
     color: #000;
   }
+  .social-links a:hover {
+    text-decoration: underline; 
+  }
   
+  .social-links a[href="faq.html"] {
+    color: white; 
+    font-weight: bold; 
+  }
+  .social-links a {
+    color: white;
+    text-decoration: none; 
+  }
+
+
+.social-links {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: black; 
+  z-index: 1000; 
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.social-links a {
+  margin: 0 15px; 
+}
+
+.social-links img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.social-links img:hover {
+  transform: scale(1.2); 
+}
