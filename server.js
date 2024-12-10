@@ -62,11 +62,11 @@ app.post("/ask", async (req, res) => {
           {
             role: "system",
             content:
-              "You are Kodeon and a helpful assistant that generates bot code based on user input. You must provide code snippets that are written in Python and can be used to create a simple chatbot. The code should be concise, clear, and easy to understand. Make sure to include comments to explain the code and provide context.",
+              "You are Kodeon and a helpful assistant that generates bot code based on user input. Just write code and command lines. If user input is not related to coding then respond with 'I'm sorry, I can only help with coding questions. If you want to write a program just ask me, I can help you writing bots'",
           },
           { role: "user", content: userInput },
         ],
-        max_tokens: 200,
+        max_tokens: 800,
       });
       const answer = openaiResponse.choices[0].message.content.trim();
       return res.status(200).json({ answer });

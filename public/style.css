@@ -267,3 +267,19 @@ h1 {
 .social-links img:hover {
   transform: scale(1.2); 
 }
+
+pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  white-space: pre-wrap; 
+  font-family: monospace;
+  text-align: justify; 
+  line-height: 1.6; 
+}
+
+code {
+  font-size: 1rem;
+  color: #333;
+}

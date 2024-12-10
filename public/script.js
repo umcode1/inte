@@ -31,12 +31,12 @@ skipButton.addEventListener("click", () => {
     searchContainer.scrollIntoView({ behavior: "smooth" });
     searchInput.focus();
 
-    replayButton.style.display = "block";
-    replayButton.style.position = "absolute";
-    replayButton.style.top = "50%";
-    replayButton.style.left = "50%";
-    replayButton.style.transform = "translate(-50%, -50%)";
-    replayButton.style.zIndex = "3";
+    // replayButton.style.display = "block";
+    // replayButton.style.position = "absolute";
+    // replayButton.style.top = "50%";
+    // replayButton.style.left = "50%";
+    // replayButton.style.transform = "translate(-50%, -50%)";
+    // replayButton.style.zIndex = "3";
   }
 });
 
@@ -110,7 +110,14 @@ searchButton.addEventListener("click", async () => {
         responseArea.innerHTML = "";
         responseArea.appendChild(img);
       } else if (currentVideo === "3.mp4" && data.answer) {
-        responseArea.innerText = data.answer;
+        responseArea.innerHTML = "";
+
+        const codeBlock = document.createElement("pre");
+        const codeContent = document.createElement("code");
+        codeContent.textContent = data.answer;
+
+        codeBlock.appendChild(codeContent);
+        responseArea.appendChild(codeBlock);
       } else if (currentVideo === "1.mp4" && data.answer) {
         console.log(data.answer);
         responseArea.innerText = data.answer;
