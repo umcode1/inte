@@ -109,12 +109,10 @@ searchButton.addEventListener("click", async () => {
         img.style.marginTop = "20px";
         responseArea.innerHTML = "";
         responseArea.appendChild(img);
-      } else if (currentVideo === "3.mp4" && data.code) {
-        const pre = document.createElement("pre");
-        pre.textContent = data.code;
-        responseArea.innerHTML = "";
-        responseArea.appendChild(pre);
+      } else if (currentVideo === "3.mp4" && data.answer) {
+        responseArea.innerText = data.answer;
       } else if (currentVideo === "1.mp4" && data.answer) {
+        console.log(data.answer);
         responseArea.innerText = data.answer;
       } else {
         responseArea.innerText = "Error";

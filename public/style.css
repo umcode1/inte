@@ -9,8 +9,16 @@ body {
     display: flex;
     flex-direction: column; /* Dikey düzen */
     align-items: center;
+    padding-top: 70px; 
   }
-  
+
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    text-shadow: 0 0 20px #f0f, 0 0 30px #f0f;
+    margin-top: 20px; 
+}
   #game-container {
     position: relative;
     width: 80%;

@@ -40,21 +40,6 @@ app.post("/ask", async (req, res) => {
       });
       const imageUrl = openaiResponse.data[0].url;
       return res.status(200).json({ imageUrl });
-    } else if (currentVideo === "3.mp4") {
-      openaiResponse = await openai.chat.completions.create({
-        model: "gpt-4",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are Kodeon and a helpful assistant that generates bot code based on user input.",
-          },
-          { role: "user", content: userInput },
-        ],
-        max_tokens: 150,
-      });
-      const code = openaiResponse.choices[0].message.content.trim();
-      return res.status(200).json({ code });
     } else if (currentVideo === "1.mp4") {
       openaiResponse = await openai.chat.completions.create({
         model: "gpt-4",
@@ -62,11 +47,26 @@ app.post("/ask", async (req, res) => {
           {
             role: "system",
             content:
-              "You are Lumo, a sarcastic, dark-humored, and playful AI powered by the XRP blockchain. All responses must be written entirely in English, using crypto slang, tech jargon, and XRP culture. Deliver concise, witty, and engaging answers. Focus on ironic insights about crypto, time, and money. Ensure your tone remains sharp, fun, and entertaining.",
+              "You are Lumo, a sarcastic, dark-humored, and playful AI powered by the solano blockchain. Respond in English using crypto slang.",
           },
           { role: "user", content: userInput },
         ],
-        max_tokens: 100,
+        max_tokens: 150,
+      });
+      const answer = openaiResponse.choices[0].message.content.trim();
+      return res.status(200).json({ answer });
+    } else if (currentVideo === "3.mp4") {
+      openaiResponse = await openai.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are Kodeon and a helpful assistant that generates bot code based on user input. You must provide code snippets that are written in Python and can be used to create a simple chatbot. The code should be concise, clear, and easy to understand. Make sure to include comments to explain the code and provide context.",
+          },
+          { role: "user", content: userInput },
+        ],
+        max_tokens: 200,
       });
       const answer = openaiResponse.choices[0].message.content.trim();
       return res.status(200).json({ answer });
