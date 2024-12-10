@@ -283,3 +283,32 @@ code {
   font-size: 1rem;
   color: #333;
 }
+
+.character-selection {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.character-selection h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.thumbnail {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}

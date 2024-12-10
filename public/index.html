@@ -29,7 +29,6 @@
       </div> -->
 
       <div id="controlButtons">
-        <button id="skipButton">Skip</button>
         <button id="replayButton">↺ </button>
       </div>
 
@@ -38,11 +37,13 @@
       No support for video playback
     </video>
 
-    <div id="choiceOverlay">
-      <button id="choice1" class="choiceButton">Lumo</button>
-      <button id="choice2" class="choiceButton">Arion</button>
-      <button id="choice3" class="choiceButton">Kodeon</button>
-      
+    <div class="character-selection">
+      <h2>Choose your best character</h2>
+      <div class="thumbnails">
+        <img src="01.jpg" alt="Character 1" class="thumbnail" onclick="selectCharacter('Character 1')">
+        <img src="02.jpg" alt="Character 2" class="thumbnail" onclick="selectCharacter('Character 2')">
+        <img src="03.jpg" alt="Character 3" class="thumbnail" onclick="selectCharacter('Character 3')">
+      </div>
     </div>
 
     <div id="searchContainer" style="display: none;">
