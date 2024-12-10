@@ -1,6 +1,11 @@
 const replayButton = document.getElementById("replayButton");
 const muteButton = document.getElementById("muteButton");
 const videoPlayer = document.getElementById("videoPlayer");
+function autoPlayVideo() {
+  const event = new Event("click"); // "Click" olayını oluştur
+  videoPlayer.dispatchEvent(event); // Olayı tetikle
+}
+
 const choiceOverlay = document.getElementById("choiceOverlay");
 const searchContainer = document.getElementById("searchContainer");
 const searchInput = document.getElementById("searchInput");
@@ -9,17 +14,26 @@ const responseArea = document.getElementById("responseArea");
 const dynamicText = document.createElement("h3"); // Dynamic text for the search section
 
 let currentVideo = "intro.mp4";
-
+autoPlayVideo();
 // Add dynamicText to the searchContainer
 searchContainer.insertBefore(dynamicText, searchInput);
 
 // Function to play a video
 function playVideo(videoPath) {
   videoPlayer.src = videoPath;
-  videoPlayer.muted = muteButton.innerText === "🔇";
-  videoPlayer.play().catch((error) => {
-    console.error("Video play error:", error);
-  });
+
+  videoPlayer.load(); // Videoyu yükle
+  videoPlayer.volume = 0.2;
+  videoPlayer.muted = false; // Ses açık
+  muteButton.innerText = "🔊"; // Mute butonu durumu güncelle
+  autoPlayVideo();
+
+  videoPlayer
+    .play()
+    .then(() => console.log("Video is playing"))
+    .catch((error) => {
+      console.error("Play error:", error);
+    });
   choiceOverlay.style.display = "none";
   searchContainer.style.display = "none";
 }
