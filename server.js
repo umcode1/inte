@@ -34,7 +34,7 @@ app.post("/ask", async (req, res) => {
 
     if (currentVideo === "1.mp4") {
       const textResponse = await openai.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-4o",
         messages: [
           {
             role: "system",
