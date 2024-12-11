@@ -2,8 +2,8 @@ const replayButton = document.getElementById("replayButton");
 const muteButton = document.getElementById("muteButton");
 const videoPlayer = document.getElementById("videoPlayer");
 function autoPlayVideo() {
-  const event = new Event("click"); // "Click" olayını oluştur
-  videoPlayer.dispatchEvent(event); // Olayı tetikle
+  const event = new Event("click");
+  videoPlayer.dispatchEvent(event);
 }
 
 const choiceOverlay = document.getElementById("choiceOverlay");
@@ -37,7 +37,13 @@ function playVideo(videoPath) {
   choiceOverlay.style.display = "none";
   searchContainer.style.display = "none";
 }
+const enableAutoplay = () => {
+  videoPlayer.muted = false;
+  videoPlayer.volume = 0.2;
+  videoPlayer.play().catch((error) => console.error("Play error:", error));
+};
 
+document.body.addEventListener("click", enableAutoplay, { once: true });
 // Function to handle character selection
 function selectCharacter(character) {
   searchContainer.style.display = "block";
@@ -137,4 +143,19 @@ videoPlayer.addEventListener("click", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const videoPlayer = document.getElementById("videoPlayer");
+  const playButton = document.getElementById("playButton");
+
+  playButton.addEventListener("click", () => {
+    videoPlayer
+      .play()
+      .then(() => {
+        playButton.style.display = "none";
+      })
+      .catch((error) => {
+        console.error("Error playing the video:", error);
+      });
+  });
+});
 playVideo(currentVideo);
