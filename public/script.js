@@ -55,6 +55,7 @@ function selectCharacter(character) {
       currentVideo = "1.mp4";
       dynamicText.innerText = "Fun with Lumo";
       dynamicText.style.textAlign = "center";
+
       playVideo(currentVideo);
       break;
     case "Character 2":
@@ -101,12 +102,20 @@ searchButton.addEventListener("click", async () => {
       responseArea.innerText = `Error: ${data.error}`;
     } else {
       responseArea.innerHTML = "";
-      if (currentVideo === "2.mp4" && data.imageUrl) {
+      if (currentVideo === "1.mp4" && data.imageUrl && data.answer) {
+        const textParagraph = document.createElement("p");
+        textParagraph.innerText = data.answer;
+        textParagraph.style.marginBottom = "10px";
+        responseArea.appendChild(textParagraph);
+
         const img = document.createElement("img");
         img.src = data.imageUrl;
         img.alt = "Generated Image";
-        img.style.maxWidth = "100%";
-        img.style.marginTop = "20px";
+        img.style.maxWidth = "50%";
+        img.style.maxHeight = "50%";
+        img.style.margin = "20px auto";
+        img.style.display = "block";
+        img.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
         responseArea.appendChild(img);
       } else if (currentVideo === "3.mp4" && data.answer) {
         const codeBlock = document.createElement("pre");
@@ -114,7 +123,7 @@ searchButton.addEventListener("click", async () => {
         codeContent.textContent = data.answer;
         codeBlock.appendChild(codeContent);
         responseArea.appendChild(codeBlock);
-      } else if (currentVideo === "1.mp4" && data.answer) {
+      } else if (currentVideo === "2.mp4" && data.answer) {
         responseArea.innerText = data.answer;
       } else {
         responseArea.innerText = "Error";
@@ -157,5 +166,13 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error playing the video:", error);
       });
   });
+});
+const playButton = document.getElementById("playButton");
+videoPlayer.addEventListener("pause", () => {
+  playButton.style.display = "block";
+});
+
+videoPlayer.addEventListener("play", () => {
+  playButton.style.display = "none";
 });
 playVideo(currentVideo);

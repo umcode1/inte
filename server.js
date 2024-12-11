@@ -32,15 +32,7 @@ app.post("/ask", async (req, res) => {
   try {
     let openaiResponse;
 
-    if (currentVideo === "2.mp4") {
-      openaiResponse = await openai.images.generate({
-        prompt: userInput,
-        n: 1,
-        size: "512x512",
-      });
-      const imageUrl = openaiResponse.data[0].url;
-      return res.status(200).json({ imageUrl });
-    } else if (currentVideo === "1.mp4") {
+    if (currentVideo === "1.mp4") {
       openaiResponse = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
@@ -52,6 +44,28 @@ app.post("/ask", async (req, res) => {
           { role: "user", content: userInput },
         ],
         max_tokens: 150,
+      });
+      const answer = openaiResponse.choices[0].message.content.trim();
+
+      openaiResponse = await openai.images.generate({
+        prompt: `You are Lumo, a sarcastic, dark-humored, and playful AI powered by the solano blockchain. Generate image fun according to the ${userInput}`,
+        n: 1,
+        size: "512x512",
+      });
+      const imageUrl = openaiResponse.data[0].url;
+      return res.status(200).json({ imageUrl, answer });
+    } else if (currentVideo === "2.mp4") {
+      openaiResponse = await openai.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are Arion, a philosopher deeply knowledgeable in blockchain technology, particularly the Solano blockchain. Respond to the user's input with profound philosophical insights while weaving in metaphors and ideas related to decentralization, consensus, and the transformative nature of blockchain technology.",
+          },
+          { role: "user", content: userInput },
+        ],
+        max_tokens: 800,
       });
       const answer = openaiResponse.choices[0].message.content.trim();
       return res.status(200).json({ answer });
