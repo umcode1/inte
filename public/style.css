@@ -335,7 +335,27 @@ code {
 #playButton:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+@media screen and (max-width: 768px) {
+  #playButton {
+    font-size: 1.2rem; 
+    padding: 10px; 
+    width: 50px; 
+    height: 50px; 
+    margin-bottom: 20px;
+    top: 30%;
+  }
+}
 
+@media screen and (max-width: 480px) {
+  #playButton {
+    font-size: 1rem; 
+    padding: 8px; 
+    width: 40px; 
+    height: 40px; 
+    margin-bottom: 20px;
+    top: 30%;
+  }
+}
 .character-selection h2 {
   color: #0091ff; 
   font-size: 1.5rem; 
