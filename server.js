@@ -33,7 +33,7 @@ app.post("/ask", async (req, res) => {
     let openaiResponse;
 
     if (currentVideo === "1.mp4") {
-      openaiResponse = await openai.chat.completions.create({
+      const textResponse = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
           {
@@ -45,14 +45,17 @@ app.post("/ask", async (req, res) => {
         ],
         max_tokens: 150,
       });
-      const answer = openaiResponse.choices[0].message.content.trim();
 
-      openaiResponse = await openai.images.generate({
-        prompt: `You are Lumo, a sarcastic, dark-humored, and playful AI powered by the solano blockchain. Generate image fun according to the ${userInput}`,
+      const answer = textResponse.choices[0].message.content.trim();
+
+      const imageResponse = await openai.images.generate({
+        prompt: `You are Lumo, a sarcastic, dark-humored, and playful AI powered by the solano blockchain. Generate a fun image according to: ${userInput}`,
         n: 1,
         size: "512x512",
       });
-      const imageUrl = openaiResponse.data[0].url;
+
+      const imageUrl = imageResponse.data[0].url;
+
       return res.status(200).json({ imageUrl, answer });
     } else if (currentVideo === "2.mp4") {
       openaiResponse = await openai.chat.completions.create({
