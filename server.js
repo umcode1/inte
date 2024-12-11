@@ -44,7 +44,6 @@ app.post("/ask", async (req, res) => {
           { role: "user", content: userInput },
         ],
         max_tokens: 800,
-        response_format: "json",
       });
 
       const answer = textResponse.choices[0].message.content.trim();
