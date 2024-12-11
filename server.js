@@ -34,7 +34,7 @@ app.post("/ask", async (req, res) => {
 
     if (currentVideo === "1.mp4") {
       const textResponse = await openai.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-4o",
         messages: [
           {
             role: "system",
@@ -44,6 +44,7 @@ app.post("/ask", async (req, res) => {
           { role: "user", content: userInput },
         ],
         max_tokens: 800,
+        response_format: "json",
       });
 
       const answer = textResponse.choices[0].message.content.trim();
