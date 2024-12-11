@@ -59,7 +59,7 @@ app.post("/ask", async (req, res) => {
       return res.status(200).json({ imageUrl, answer });
     } else if (currentVideo === "2.mp4") {
       openaiResponse = await openai.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-4o",
         messages: [
           {
             role: "system",
