@@ -48,15 +48,15 @@ app.post("/ask", async (req, res) => {
 
       const answer = textResponse.choices[0].message.content.trim();
 
-      const imageResponse = await openai.images.generate({
-        prompt: `You are Lumo, a sarcastic, dark-humored, and playful AI powered by the solano blockchain. Generate a fun image according to: ${userInput}`,
-        n: 1,
-        size: "512x512",
-      });
+      // const imageResponse = await openai.images.generate({
+      //   prompt: `You are Lumo, a sarcastic, dark-humored, and playful AI powered by the solano blockchain. Generate a fun image according to: ${userInput}`,
+      //   n: 1,
+      //   size: "512x512",
+      // });
 
-      const imageUrl = imageResponse.data[0].url;
+      // const imageUrl = imageResponse.data[0].url;
 
-      return res.status(200).json({ imageUrl, answer });
+      return res.status(200).json({ answer });
     } else if (currentVideo === "2.mp4") {
       openaiResponse = await openai.chat.completions.create({
         model: "gpt-4o",

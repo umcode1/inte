@@ -102,21 +102,22 @@ searchButton.addEventListener("click", async () => {
       responseArea.innerText = `Error: ${data.error}`;
     } else {
       responseArea.innerHTML = "";
-      if (currentVideo === "1.mp4" && data.imageUrl && data.answer) {
-        const textParagraph = document.createElement("p");
-        textParagraph.innerText = data.answer;
-        textParagraph.style.marginBottom = "10px";
-        responseArea.appendChild(textParagraph);
+      if (currentVideo === "1.mp4" && data.answer) {
+        responseArea.innerText = data.answer;
+        // const textParagraph = document.createElement("p");
+        // textParagraph.innerText = data.answer;
+        // textParagraph.style.marginBottom = "10px";
+        // responseArea.appendChild(textParagraph);
 
-        const img = document.createElement("img");
-        img.src = data.imageUrl;
-        img.alt = "Generated Image";
-        img.style.maxWidth = "50%";
-        img.style.maxHeight = "50%";
-        img.style.margin = "20px auto";
-        img.style.display = "block";
-        img.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
-        responseArea.appendChild(img);
+        // const img = document.createElement("img");
+        // img.src = data.imageUrl;
+        // img.alt = "Generated Image";
+        // img.style.maxWidth = "50%";
+        // img.style.maxHeight = "50%";
+        // img.style.margin = "20px auto";
+        // img.style.display = "block";
+        // img.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+        // responseArea.appendChild(img);
       } else if (currentVideo === "3.mp4" && data.answer) {
         const codeBlock = document.createElement("pre");
         const codeContent = document.createElement("code");
