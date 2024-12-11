@@ -334,3 +334,9 @@ code {
 #playButton:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.character-selection h2 {
+  color: green; 
+  font-size: 1.5rem; 
+  text-align: center; 
+}
